@@ -1,5 +1,5 @@
 import { Menu } from "lucide-react";
-import { SheetTrigger, Sheet, SheetContent } from "@/components/ui/sheet";
+import { Sheet, SheetTrigger, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Sidebar } from "./sidebar";
 
 const MobileSidebar = () => {
@@ -10,7 +10,8 @@ const MobileSidebar = () => {
           <Menu />
         </SheetTrigger>
         <SheetContent side="left" className="p-0 bg-white">
-            <Sidebar/>
+          <SheetTitle className="sr-only">Sidebar Menu</SheetTitle> {/* Hidden but accessible */}
+          <Sidebar />
         </SheetContent>
       </Sheet>
     </div>
