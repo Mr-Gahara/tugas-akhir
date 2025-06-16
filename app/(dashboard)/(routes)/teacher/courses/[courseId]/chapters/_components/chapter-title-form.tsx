@@ -11,26 +11,26 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Course } from "@prisma/client";
-import { Input } from "@/components/ui/input";
-import { formatPrice } from "@/lib/format";
 
-interface PriceFormProps {
-  initialData: Course;
+interface ChapterTitleFormProps {
+  initialData: {
+    title: string;
+  };
   courseId: string;
+  chapterId: string;
 }
 
 const formSchema = z.object({
-  price: z.coerce.number(),
+  title: z.string().min(1),
 });
 
-const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
+const ChapterTitleForm = ({ initialData, courseId, chapterId }: ChapterTitleFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => {
@@ -41,50 +41,36 @@ const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      price: initialData?.price || 0,
-    },
+    defaultValues: initialData,
   });
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Description updated successfully");
+      await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
+      toast.success("Chapter title updated successfully");
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Error updating Description:");
+      toast.error("Error updating chapter title:");
     }
   };
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-bold flex items-center justify-between">
-        Course price
+        Chapter title
         <Button onClick={toggleEdit} variant="ghost" className="font-bold">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit price
+              Edit title
             </>
           )}
         </Button>
       </div>
-      {!isEditing && (
-        <p
-          className={cn(
-            "text-sm mt-2",
-            !initialData.price && "text-slate-500 italic"
-          )}
-        >
-          {initialData.price
-            ? formatPrice(initialData.price)
-            : "No price set for this course"
-          }
-        </p>
-      )}
+      {!isEditing && <p className="text-sm mt-2">{initialData.title}</p>}
       {isEditing && (
         <Form {...form}>
           <form
@@ -93,15 +79,13 @@ const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
           >
             <FormField
               control={form.control}
-              name="price"
+              name="title"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input 
+                    <Input
                       disabled={isSubmitting}
-                      placeholder="Enter course price"
-                      type="number"
-                      step="0.01"
+                      placeholder="e.g. 'Introduction to the course'"
                       {...field}
                     />
                   </FormControl>
@@ -121,4 +105,4 @@ const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   );
 };
 
-export default PriceForm;
+export default ChapterTitleForm;

@@ -3,16 +3,14 @@
 import * as z from "zod";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { File, ImageIcon, Pencil, PlusCircle } from "lucide-react";
+import { File, Loader2, PlusCircle, X } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { Attachment, Course } from "@prisma/client";
 import { FileUpload } from "@/components/file-upload";
 import { useForm } from "react-hook-form"; 
 import { zodResolver } from "@hookform/resolvers/zod"; 
-import { url } from "inspector";
 
 interface AttachmentFormProps {
   initialData: Course & { attachments: Attachment[] } 
@@ -27,6 +25,7 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isUploading, setIsUploading] = useState(false); 
   const router = useRouter();
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,6 +50,24 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
       setIsEditing(false);
     }
   };
+
+  const onDelete = async (id: string) => {
+    try {
+      console.log("Deleting attachment with ID:", id);
+      console.log("Course ID:", courseId);
+      console.log("Full URL:", `/api/courses/${courseId}/attachments/${id}`);
+      setDeletingId(id);
+      // Fixed: Use attachmentId parameter name to match your route
+      await axios.delete(`/api/courses/${courseId}/attachments/${id}`);
+      toast.success("Attachment deleted successfully");
+      router.refresh();
+    } catch (error) {
+      toast.error("Failed to delete attachment");
+      console.error("Delete attachment error:", error); // Added error logging
+    } finally {
+      setDeletingId(null);
+    }
+  }
   
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
@@ -87,13 +104,26 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
                   <p className="text-xs line-clamp truncate">
                     {attachment.name}
                   </p>
+                  {deletingId === attachment.id && (
+                    <div className="ml-auto">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    </div>
+                  )}
+                  {deletingId !== attachment.id && (
+                    <button 
+                      onClick={() => onDelete(attachment.id)} 
+                      className="ml-auto hover:opacity-75 transition"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
           )}
         </>
       )}
-      { isEditing && (
+      {isEditing && (
         <>
           <FileUpload 
             endpoint="courseAttachment"
@@ -104,7 +134,7 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
             }}
           />
           <div className="text-xs text-muted-foreground mt-4">
-            add anything that student need to completed the course.
+            Add anything that students need to complete the course.
           </div>
         </>
       )}
