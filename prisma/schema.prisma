@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+
 }
 
 datasource db {
@@ -25,6 +26,7 @@ model Course {
   purchases Purchase[]
 
   @@index([categoryId])
+
 }
 
 model Category {

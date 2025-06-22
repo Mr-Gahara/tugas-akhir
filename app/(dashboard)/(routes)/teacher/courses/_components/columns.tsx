@@ -27,7 +27,7 @@ export const columns: ColumnDef<Course>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Title
+          Judul
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -41,7 +41,7 @@ export const columns: ColumnDef<Course>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Price
+          Harga
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -64,7 +64,7 @@ export const columns: ColumnDef<Course>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Published
+          Publikasi
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
