@@ -36,7 +36,6 @@ const CategoryItem = ({ label, value }: CategoryItemProps) => {
       onClick={onClick}
       className={cn(
         "py-2 px-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-sky-700 transition",
-        // change style if active
         isSelected && "border-sky-700 bg-sky-200/20 text-sky-800"
       )}
       type="button"

@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;
-  chapter: { id: string }[];
+  chapters: { id: string }[];
   progress: number | null;
 };
 
@@ -19,19 +19,19 @@ export const getCourses = async ({
   title,
   categoryId,
 }: GetCourses): Promise<CourseWithProgressWithCategory[]> => {
-  // TODO: implement function logic here
   try {
     const courses = await db.course.findMany({
       where: {
-        isPublised: true,
+        isPublised: true, // As per your instruction
         title: {
           contains: title,
+          mode: "insensitive",
         },
         categoryId,
       },
       include: {
         category: true,
-        Chapters: {
+        Chapters: { // As per your instruction
           where: {
             isPublished: true,
           },
@@ -46,9 +46,28 @@ export const getCourses = async ({
         },
       },
       orderBy: {
-        createdAt: "desc"
-      }
+        createdAt: "desc",
+      },
     });
+
+    const coursesWithProgress = await Promise.all(
+      courses.map(async (course) => {
+        const progressPercentage =
+          course.purchases.length > 0
+            ? await getProgress(userId, course.id)
+            : null;
+        const { Chapters, ...reformattedCourse } = course;
+
+        return {
+          ...reformattedCourse,
+          chapters: Chapters,
+          progress: progressPercentage,
+        };
+      })
+    );
+
+    return coursesWithProgress;
+
   } catch (error) {
     console.log("[ERROR_GET_COURSES]: ", error);
     return [];

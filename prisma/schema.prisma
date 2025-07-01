@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-
+  previewFeatures = ["fullTextSearchPostgres"]
 }
 
 datasource db {
@@ -26,7 +26,6 @@ model Course {
   purchases Purchase[]
 
   @@index([categoryId])
-
 }
 
 model Category {
