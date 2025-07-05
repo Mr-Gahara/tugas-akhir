@@ -6,7 +6,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
 import { formatPrice } from "@/lib/format";
 
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -47,17 +46,19 @@ export const columns: ColumnDef<Course>[] = [
       );
     },
     cell: ({ row }) => {
-        const rawPrice = row.getValue("price");
-        const price =
-          typeof rawPrice === "number"
-            ? rawPrice
-            : parseFloat(typeof rawPrice === "string" ? rawPrice : String(rawPrice));
-        
-        return <div>{formatPrice(price)}</div>;
-      },
+      const rawPrice = row.getValue("price");
+      const price =
+        typeof rawPrice === "number"
+          ? rawPrice
+          : parseFloat(
+              typeof rawPrice === "string" ? rawPrice : String(rawPrice)
+            );
+
+      return <div>{formatPrice(price)}</div>;
+    },
   },
   {
-    accessorKey: "isPublised",
+    accessorKey: "isPublished",
     header: ({ column }) => {
       return (
         <Button
@@ -70,16 +71,13 @@ export const columns: ColumnDef<Course>[] = [
       );
     },
     cell: ({ row }) => {
-        const isPublished = row.getValue("isPublised") || false;
-        return (
-            <Badge className={cn(
-                "bg-slate-500",
-                isPublished && "bg-sky-700"
-            )}>
-                {isPublished? "Published" : "Draft"}
-            </Badge>
-        )
-    }
+      const isPublished = row.getValue("isPublished") || false;
+      return (
+        <Badge className={cn("bg-slate-500", isPublished && "bg-sky-700")}>
+          {isPublished ? "Published" : "Draft"}
+        </Badge>
+      );
+    },
   },
   {
     id: "actions",
@@ -91,7 +89,7 @@ export const columns: ColumnDef<Course>[] = [
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-4 w-8 p-0">
                 <span className="sr-only">Open Menu</span>
-                <MoreHorizontal className="h-4 w-4"/>
+                <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

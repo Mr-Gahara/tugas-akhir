@@ -48,7 +48,7 @@ const Preview = ({ value }: PreviewProps) => {
   }
 
   return (
-    <div className="border rounded-md bg-white">
+    <div>
       <EditorContent editor={editor} />
     </div>
   );

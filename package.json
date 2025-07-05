@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
-    "seed": "scripts/seed.ts"
+    "start": "next start"
+  },
+  "prisma": {
+    "seed": "node scripts/seed.js"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.12",
@@ -22,6 +24,7 @@
     "@radix-ui/react-dropdown-menu": "^2.1.15",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-popover": "^1.1.14",
+    "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.1.2",
     "@tanstack/react-table": "^8.21.3",
     "@tiptap/extension-code-block-lowlight": "^2.14.0",

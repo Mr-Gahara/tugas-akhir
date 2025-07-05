@@ -22,7 +22,7 @@ export const getCourses = async ({
   try {
     const courses = await db.course.findMany({
       where: {
-        isPublised: true, // As per your instruction
+        isPublished: true, // As per your instruction
         title: {
           contains: title,
           mode: "insensitive",

@@ -66,7 +66,7 @@ const courseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
   return (
     <>
-      {!course.isPublised && (
+      {!course.isPublished && (
         <Banner
           label="This course is not published yet. Students won't be able to see it."
           variant="warning"
@@ -83,7 +83,7 @@ const courseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <Actions
             disabled={!isComplete}
             courseId={params.courseId}
-            isPublished={course.isPublised}
+            isPublished={course.isPublished}
           />
         </div>
 

@@ -16,7 +16,7 @@ model Course {
   description String?
   imageUrl    String?
   price       Float?
-  isPublised  Boolean      @default(false)
+  isPublished  Boolean      @default(false)
   categoryId  String?
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
@@ -24,7 +24,6 @@ model Course {
   attachments Attachment[]
   Chapters Chapter[]
   purchases Purchase[]
-
   @@index([categoryId])
 }
 
@@ -42,7 +41,6 @@ model Attachment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-
   @@index([courseId])
 }
 
@@ -96,16 +94,5 @@ model Purchase {
   updatedAt   DateTime @updatedAt
 
   @@index([courseId])
+  @@unique([userId, courseId])
 }
-
-
-
-// model StripeCustomer {
-//   id                  String   @id @default(uuid())
-//   userId              String   @unique
-//   stripeCustomerId    String   @unique
-//   createdAt           DateTime @default(now())
-//   updatedAt           DateTime @updatedAt
-
-//   @@index([userId])
-// }

@@ -51,12 +51,11 @@ export async function PATCH(
         userId,
       },
       data: {
-        isPublised: true,
+        isPublished: true,
       },
     });
 
     return NextResponse.json(publishedCourse);
-
   } catch (error) {
     console.log("[COURSE_ID_PUBLISH]", error);
     return new NextResponse("Internal Server Error", { status: 500 });
