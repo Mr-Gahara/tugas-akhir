@@ -26,15 +26,16 @@ export async function POST(req: Request) {
     // 2. Process only successful transactions
     if (body.transaction_status === "settlement" || body.transaction_status === "capture") {
       
-      // 3. Parse metadata from the order_id
-      const orderIdParts = body.order_id.split('-');
-      if (orderIdParts.length < 4 || orderIdParts[0] !== 'course' || orderIdParts[2] !== 'user') {
-          console.error("Webhook Error: Could not parse metadata from order_id:", body.order_id);
-          return new NextResponse("Webhook Error: Invalid order_id format", { status: 400 });
+      // --- KEY MODIFICATION ---
+      // Retrieve metadata from the custom fields instead of the order_id.
+      const courseId = body.custom_field1;
+      const userId = body.custom_field2;
+
+      // Validate that the custom fields exist.
+      if (!courseId || !userId) {
+          console.error("Webhook Error: Missing custom_field1 or custom_field2 in webhook body");
+          return new NextResponse("Webhook Error: Missing required custom fields", { status: 400 });
       }
-      
-      const courseId = orderIdParts[1];
-      const userId = orderIdParts[3];
 
       // 4. Check if a purchase record already exists to prevent duplicates
       const existingPurchase = await db.purchase.findUnique({
