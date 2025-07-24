@@ -1,30 +1,19 @@
 "use client";
 
-import axios from "axios";
 import MuxPlayer from "@mux/mux-player-react";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface VideoPlayerProps {
   playbackId: string;
-  courseId: string;
-  chapterId: string;
-  nextChapterId?: string;
   isLocked: boolean;
-  completeOnEnd: boolean;
   title: string;
 }
 
 const VideoPlayer = ({
   playbackId,
-  courseId,
-  chapterId,
-  nextChapterId,
   isLocked,
-  completeOnEnd,
   title,
 }: VideoPlayerProps) => {
   const [isReady, setIsReady] = useState(false);
@@ -49,7 +38,6 @@ const VideoPlayer = ({
                 !isReady && "hidden"
             )}
             onCanPlay={() => setIsReady(true)}
-            onEnded={() => {}}
             autoPlay
             playbackId={playbackId}
         />
