@@ -9,6 +9,10 @@ interface VideoPlayerProps {
   playbackId: string;
   isLocked: boolean;
   title: string;
+  chapterId?: string;
+  courseId?: string;
+  nextChapterId?: string;
+  completeOnEnd?: boolean;
 }
 
 const VideoPlayer = ({

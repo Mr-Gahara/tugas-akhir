@@ -9,13 +9,12 @@ const nextConfig: NextConfig = {
     "@uploadthing/server",
     "uploadthing"
   ],
-  experimental: {
-    serverComponentsExternalPackages: ["@uploadthing/shared"],
-    turbo: {
-      rules: {
-      },
+  serverComponentsExternalPackages: ["@uploadthing/shared"],
+  turbo: {
+    rules: {
     },
   },
+
   logging: {
     fetches: {
       fullUrl: true
