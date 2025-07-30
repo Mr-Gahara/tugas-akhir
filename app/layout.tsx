@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script"; // Import the Next.js Script component
+// Correctly import from the 'geist' package
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import Script from "next/script";
 import "./globals.css";
 import { ClerkProvider } from '@clerk/nextjs';
 import ToastProvider from "@/components/providers/toaster-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// The `GeistSans` and `GeistMono` imports are now used directly as class names
+// so you no longer need to declare them as constants here.
+// You can delete the old `geistSans` and `geistMono` constant declarations.
 
 export const metadata: Metadata = {
   title: "LMS Platform",
@@ -34,10 +30,9 @@ export default function RootLayout({
           src="https://app.sandbox.midtrans.com/snap/snap.js"
           data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
         />
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <ToastProvider/>
+        {/* Use the new font variables provided by the geist package */}
+        <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+          <ToastProvider />
           {children}
         </body>
       </html>

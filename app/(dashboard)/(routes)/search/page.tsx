@@ -1,27 +1,25 @@
 import { db } from "@/lib/db";
-import Categories from "./_components/Categories";
-import SearchInput from "@/components/search-input";
 import { getCourses } from "@/actions/get-courses";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import CoursesList from "./_components/courses-list";
+import { SearchClient } from "./_components/search-client";
+
+export const dynamic = "force-dynamic";
 
 interface searchPageProps {
   searchParams: {
-    title: string,
-    categoryId: string,
-  }
+    title: string;
+    categoryId: string;
+  };
 }
 
-const SearchPage = async ({
-  searchParams
-}: searchPageProps) => {
-
+const SearchPage = async ({ searchParams }: searchPageProps) => {
   const { userId } = await auth();
 
   if (!userId) {
-    return redirect("/")
+    return redirect("/");
   }
+
   const categories = await db.category.findMany({
     orderBy: {
       name: "asc",
@@ -30,21 +28,11 @@ const SearchPage = async ({
 
   const courses = await getCourses({
     userId,
-    ...searchParams
+    ...searchParams,
   });
 
-
-  return (
-    <>
-      <div className="px-6 pt-6 md:hidden md:mb-0 block">
-        <SearchInput />
-      </div>
-      <div className="p-6 space-y-4">
-        <Categories items={categories} />
-        <CoursesList items={courses}/>
-      </div>
-    </>
-  );
+  // This page now ONLY fetches data and passes it to the client component.
+  return <SearchClient categories={categories} courses={courses} />;
 };
 
 export default SearchPage;
