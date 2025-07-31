@@ -8,7 +8,7 @@ const guestRoutes = [
   {
     icon: Layout,
     label: "Dasbor",
-    href: "/",
+    href: "/dashboard",
   },
   {
     icon: Compass,

@@ -3,10 +3,6 @@
 import { Category } from "@prisma/client";
 import CategoryItem from "./category-item";
 
-// interface CategoriesProps {
-//     items: Catego
-// }
-
 interface CategoriesProps {
     items: Category[];
 }

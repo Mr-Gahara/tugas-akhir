@@ -24,7 +24,7 @@ export const SearchClient = ({ categories, courses }: SearchClientProps) => {
     <>
       <div className="px-6 pt-6 md:hidden md:mb-0 block">
         <Suspense fallback={null}>
-          <SearchInput />
+          <SearchInput />          
         </Suspense>
       </div>
       <div className="p-6 space-y-4">

@@ -12,8 +12,8 @@ import ToastProvider from "@/components/providers/toaster-provider";
 // You can delete the old `geistSans` and `geistMono` constant declarations.
 
 export const metadata: Metadata = {
-  title: "LMS Platform",
-  description: "Learning Management System",
+  title: "Fly In Fantasy",
+  description: "kursus online anda",
 };
 
 export default function RootLayout({

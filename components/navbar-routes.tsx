@@ -9,7 +9,7 @@ import SearchInput from "./search-input";
 import { isTeacher } from "@/lib/teacher";
 
 const NavbarRoutes = () => {
-  const { userId} = useAuth();
+  const { userId } = useAuth();
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith("/teacher");
@@ -31,7 +31,7 @@ const NavbarRoutes = () => {
               Keluar
             </Button>
           </Link>
-        ) : isTeacher(userId) ?  (
+        ) : isTeacher(userId) ? (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
               Panel Pengajar

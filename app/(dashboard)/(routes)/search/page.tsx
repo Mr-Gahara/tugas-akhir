@@ -32,7 +32,11 @@ const SearchPage = async ({ searchParams }: searchPageProps) => {
   });
 
   // This page now ONLY fetches data and passes it to the client component.
-  return <SearchClient categories={categories} courses={courses} />;
+  return (
+    <div>
+      <SearchClient categories={categories} courses={courses} />
+    </div>
+  );
 };
 
 export default SearchPage;
