@@ -34,7 +34,7 @@ export function ArtworkCarousel() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">Featured Artwork</h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed font-body">
+          <p className="mx-auto max-w-[700px] text-red-100 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed font-body">
             Dapatkan inspirasi dari karya pengajar.
           </p>
         </div>
