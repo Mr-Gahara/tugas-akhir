@@ -52,23 +52,23 @@ const CreatePage = () => {
   return <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
     <div>
         <h1 className="text-2xl">
-            Judul Kursus Anda
+            Judul Modul Anda
         </h1>
         <p className="text-sm text-slate-600">
-            Kursus apa yang ingin anda buat? judul dapat diganti nanti, jadi jangan khawatir.
+            Modul apa yang ingin anda buat? judul dapat diganti nanti, jadi jangan khawatir.
         </p>
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-8">
                 <FormField control={form.control} name="title" render={({ field }) => (
                     <FormItem>
                         <FormLabel>
-                            Nama Kursus
+                            Nama Modul
                         </FormLabel>
                         <FormControl>
                             <Input disabled={isSubmitting} placeholder="contoh: 'Komposisi warna'" {...field}/>
                         </FormControl>
                         <FormDescription>
-                            Apa yang ingin anda ajar di kursus ini?
+                            Apa yang ingin anda ajar di modul ini?
                         </FormDescription>
                         <FormMessage />
                     </FormItem>
