@@ -17,7 +17,7 @@ const AnalyticsPage = async () => {
     <div className="p-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <DataCard label="Total Penjualan" value={totalSales} />
-        <DataCard label="Total Pendapatan" value={totalRevenue} />
+        <DataCard label="Total Pendapatan" value={totalRevenue} shouldFormat={true}/>
       </div>
       <Chart data={data} />
     </div>
