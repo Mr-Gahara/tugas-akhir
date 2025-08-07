@@ -27,7 +27,7 @@ interface TitleFormProps {
 
 const formSchema = z.object({
   title: z.string().min(1, {
-    message: "Title is required",
+    message: "Judul modul tidak boleh kosong",
   }),
 });
 
@@ -49,24 +49,24 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Course title updated successfully");
+      toast.success("Judul modul diperbarui dengan sukses");
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Error updating course title:");
+      toast.error("Error memperbarui judul modul:");
     }
   };
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-bold flex items-center justify-between">
-        Course title
+        Judul Modul
         <Button onClick={toggleEdit} variant="ghost" className="font-bold">
           {isEditing ? (
-            <>Cancel</>
+            <>Batal</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit Title
+              Edit Judul
             </>
           )}
         </Button>
@@ -96,7 +96,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
             />
             <div className="flex items-center gap-x-2">
               <Button type="submit" disabled={!isValid || isSubmitting}>
-                Save
+                Simpan
               </Button>
             </div>
           </form>

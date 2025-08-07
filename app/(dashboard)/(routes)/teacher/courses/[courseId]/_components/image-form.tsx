@@ -43,10 +43,10 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
     try {
       setIsUploading(true);
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Image updated successfully");
+      toast.success("Gambar kursus diperbarui dengan sukses");
       router.refresh();
     } catch (error) {
-      toast.error("Failed to update image");
+      toast.error("Gagal memperbarui gambar kursus");
       console.error("Image update error:", error);
     } finally {
       setIsUploading(false);
@@ -57,24 +57,24 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-bold flex items-center justify-between">
-        Course image
+        Gambar Modul
         <Button 
           onClick={toggleEdit} 
           variant="ghost" 
           className="font-bold"
-          disabled={isUploading} // Disable while uploading
+          disabled={isUploading}
         >
           {isEditing ? (
-            "Cancel"
+            "Batal"
           ) : initialData.imageUrl ? (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit image
+              Edit Gambar
             </>
           ) : (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
-              Add image
+              tambah gambar
             </>
           )}
         </Button>
@@ -101,14 +101,13 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
             endpoint="courseImage"
             onChange={(url) => {
               if (url) {
-                // Update form value before submitting
                 form.setValue("imageUrl", url);
                 onSubmit({ imageUrl: url });
               }
             }}
           />
           <div className="text-xs text-muted-foreground mt-4">
-            16:9 aspect ratio recommended
+            Disarankan menggunakan aspek rasio 16:9 
           </div>
         </div>
       )}

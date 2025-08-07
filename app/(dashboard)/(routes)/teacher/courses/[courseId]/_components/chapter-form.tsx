@@ -65,10 +65,10 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
       await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
         list: updateData
       });
-      toast.success("Chapters reordered");
+      toast.success("Bab diurutkan dengan sukses");
       router.refresh();
     } catch {
-      toast.error("Something went wrong");
+      toast.error("Error mengurutkan bab");
     } finally {
       setIsUpdating(false);
     }
@@ -89,14 +89,14 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
         </div>
       )}
       <div className="font-bold flex items-center justify-between">
-        Course chapters
+        Bab modul
         <Button onClick={toggleCreating} variant="ghost" className="font-bold">
           {isCreating ? (
-            <>Cancel</>
+            <>Batal</>
           ) : (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
-              Add a Chapter
+              Tambah Bab
             </>
           )}
         </Button>
@@ -125,7 +125,7 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
               )}
             />
             <Button type="submit" disabled={!isValid || isSubmitting}>
-              Create
+              Tambah
             </Button>
           </form>
         </Form>
@@ -135,7 +135,7 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
         <div className="text-sm mt-2">
           {chapters.length === 0 && (
             <p className="text-slate-500 italic">
-              No chapters yet
+              Belum ada bab. Klik "Tambah Bab" untuk membuat bab baru.
             </p>
           )}
           {chapters.length > 0 && (
@@ -150,7 +150,7 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
       
       {!isCreating && (
         <p className="text-xs text-muted-foreground mt-4">
-          Drag and drop to reorder chapters. Click on a chapter to edit it.
+          tarik dan lepas untuk mengurutkan bab. Klik pada judul bab untuk mengedit.
         </p>
       )}
     </div>

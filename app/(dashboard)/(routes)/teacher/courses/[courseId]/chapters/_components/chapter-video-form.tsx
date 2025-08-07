@@ -56,7 +56,7 @@ const ChapterVideoForm = ({ initialData, courseId, chapterId }: ChapterVideoForm
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-bold flex items-center justify-between">
-        Chapter video
+        Bab video
         <Button 
           onClick={toggleEdit} 
           variant="ghost" 
@@ -73,7 +73,7 @@ const ChapterVideoForm = ({ initialData, courseId, chapterId }: ChapterVideoForm
           ) : (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
-              Add a video
+              Tambah video
             </>
           )}
         </Button>

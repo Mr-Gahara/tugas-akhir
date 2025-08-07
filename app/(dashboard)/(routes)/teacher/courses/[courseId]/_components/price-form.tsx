@@ -50,24 +50,24 @@ const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Description updated successfully");
+      toast.success("harga kursus diperbarui dengan sukses");
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Error updating Description:");
+      toast.error("Error memperbarui harga kursus:");
     }
   };
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-bold flex items-center justify-between">
-        Course price
+        Harga
         <Button onClick={toggleEdit} variant="ghost" className="font-bold">
           {isEditing ? (
-            <>Cancel</>
+            <>Batal</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit price
+              Edit Harga
             </>
           )}
         </Button>
@@ -81,7 +81,7 @@ const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
         >
           {initialData.price
             ? formatPrice(initialData.price)
-            : "No price set for this course"
+            : "Belum ada harga"
           }
         </p>
       )}
@@ -99,7 +99,7 @@ const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
                   <FormControl>
                     <Input 
                       disabled={isSubmitting}
-                      placeholder="Enter course price"
+                      placeholder="Masukkan harga kursus"
                       type="number"
                       step="0.01"
                       {...field}
@@ -111,7 +111,7 @@ const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             />
             <div className="flex items-center gap-x-2">
               <Button type="submit" disabled={!isValid || isSubmitting}>
-                Save
+                Simpan
               </Button>
             </div>
           </form>

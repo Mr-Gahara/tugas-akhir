@@ -68,7 +68,7 @@ const courseIdPage = async ({ params }: { params: { courseId: string } }) => {
     <>
       {!course.isPublished && (
         <Banner
-          label="This course is not published yet. Students won't be able to see it."
+          label="Modul belum dipublikasikan. Pastikan semua field telah diisi."
           variant="warning"
         />
       )}
@@ -76,7 +76,7 @@ const courseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
-            <h1 className="text-2xl font-medium">Course Setup</h1>
+            <h1 className="text-2xl font-medium">Pengaturan</h1>
             <span className="text-sm text-slate-700">{completionText}</span>
           </div>
           {/* add publish button */}
@@ -92,7 +92,7 @@ const courseIdPage = async ({ params }: { params: { courseId: string } }) => {
           <div className="space-y-6">
             <div className="flex items-center gap-x-2">
               <IconBadge icon={LayoutDashboard} />
-              <h2 className="text-xl">Customize your course</h2>
+              <h2 className="text-xl">Kostumisasi modul anda</h2>
             </div>
             <TitleForm 
               initialData={course}
@@ -121,7 +121,7 @@ const courseIdPage = async ({ params }: { params: { courseId: string } }) => {
             <div>
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={ListChecks} />
-                <h2 className="text-xl">Course Chapter</h2>
+                <h2 className="text-xl">Bab Modul</h2>
               </div>
 
               <ChapterForm 
@@ -133,7 +133,7 @@ const courseIdPage = async ({ params }: { params: { courseId: string } }) => {
             <div>
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={Wallet2} />
-                <h2 className="text-xl">sell the course</h2>
+                <h2 className="text-xl">Jual Modul</h2>
               </div>
               <PriceForm
                 initialData={course}
@@ -143,7 +143,7 @@ const courseIdPage = async ({ params }: { params: { courseId: string } }) => {
             <div>
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={File} />
-                <h2 className="text-xl">Resources & Attachment</h2>
+                <h2 className="text-xl">File tambahan</h2>
               </div>
               <AttachmentForm
                 initialData={course}

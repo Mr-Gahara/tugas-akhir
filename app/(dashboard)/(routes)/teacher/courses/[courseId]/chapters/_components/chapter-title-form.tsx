@@ -52,20 +52,20 @@ const ChapterTitleForm = ({ initialData, courseId, chapterId }: ChapterTitleForm
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Error updating chapter title:");
+      toast.error("Error memperbarui judul bab:");
     }
   };
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-bold flex items-center justify-between">
-        Chapter title
+        Judul Bab
         <Button onClick={toggleEdit} variant="ghost" className="font-bold">
           {isEditing ? (
-            <>Cancel</>
+            <>Batal</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit title
+              Edit Judul
             </>
           )}
         </Button>
@@ -95,7 +95,7 @@ const ChapterTitleForm = ({ initialData, courseId, chapterId }: ChapterTitleForm
             />
             <div className="flex items-center gap-x-2">
               <Button type="submit" disabled={!isValid || isSubmitting}>
-                Save
+                Simpan
               </Button>
             </div>
           </form>

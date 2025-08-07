@@ -60,14 +60,14 @@ const ChapterAccessForm = ({ initialData, courseId, chapterId }: ChapterAccessFo
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-bold flex items-center justify-between">
-        Access settings
+        Pengaturan Akses Bab
         <Button onClick={toggleEdit} variant="ghost" className="font-bold">
           {isEditing ? (
-            <>Cancel</>
+            <>Batal</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit access
+              Edit akses
             </>
           )}
         </Button>
@@ -76,11 +76,11 @@ const ChapterAccessForm = ({ initialData, courseId, chapterId }: ChapterAccessFo
         <div className="mt-2">
           {initialData.isFree ? (
             <p className="text-sm text-slate-500 italic">
-              This chapter is free for all users.
+              Bab ini dapat diakses secara gratis oleh semua pengguna.
             </p>
           ) : (
             <p className="text-sm text-slate-500 italic">
-              This chapter requires payment to access.
+              Bab ini hanya dapat diakses oleh pengguna yang telah membeli.
             </p>
           )}
         </div>
@@ -104,7 +104,7 @@ const ChapterAccessForm = ({ initialData, courseId, chapterId }: ChapterAccessFo
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      Allow users to access this chapter without payment.
+                      Izinkan akses gratis ke bab ini
                     </FormDescription>
                   </div>
                   <FormMessage />
@@ -114,7 +114,7 @@ const ChapterAccessForm = ({ initialData, courseId, chapterId }: ChapterAccessFo
   
             <div className="flex items-center gap-x-2">
               <Button type="submit" disabled={!isValid || isSubmitting}>
-                Save
+                Simpan
               </Button>
             </div>
           </form>

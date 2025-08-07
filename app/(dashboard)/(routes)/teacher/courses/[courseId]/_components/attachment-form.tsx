@@ -72,7 +72,7 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-bold flex items-center justify-between">
-        Course Attachments
+        Lampiran
         <Button 
           onClick={toggleEdit} 
           variant="ghost" 
@@ -83,7 +83,7 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
           {!isEditing && (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
-              Add a file
+              Tambah file
             </>
           )}
         </Button>
@@ -93,7 +93,7 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
         <>
           {initialData.attachments.length === 0 && (
             <p className="text-sm mt-2 text-slate-500 italic">
-              No attachments available. Click "Add a file" to upload.
+              Tidak ada lampiran. Klik tombol "Tambah file" untuk menambahkan.
             </p>
           )}
           {initialData.attachments.length > 0 && (
@@ -134,7 +134,7 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
             }}
           />
           <div className="text-xs text-muted-foreground mt-4">
-            Add anything that students need to complete the course.
+            Tambahkan file lampiran di sini.
           </div>
         </>
       )}

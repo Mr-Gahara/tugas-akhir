@@ -51,24 +51,24 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Description updated successfully");
+      toast.success("Deskripsi modul diperbarui dengan sukses");
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Error updating Description:");
+      toast.error("Error memperbarui deskripsi modul:");
     }
   };
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-bold flex items-center justify-between">
-        Course description
+        Deskripsi Modul
         <Button onClick={toggleEdit} variant="ghost" className="font-bold">
           {isEditing ? (
-            <>Cancel</>
+            <>Batal</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit description
+              Edit deskripsi
             </>
           )}
         </Button>
@@ -80,7 +80,7 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
             !initialData.description && "text-slate-500 italic"
           )}
         >
-          {initialData.description || "No Description"}
+          {initialData.description || "Kosong"}
         </p>
       )}
       {isEditing && (
@@ -107,7 +107,7 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
             />
             <div className="flex items-center gap-x-2">
               <Button type="submit" disabled={!isValid || isSubmitting}>
-                Save
+                Simpan
               </Button>
             </div>
           </form>

@@ -49,7 +49,7 @@ const ChapterIdPage = async ({
       {!chapter.isPublished && (
         <Banner
           variant="warning"
-          label="This chapter is not published yet. Students won't be able to see it."
+          label="Bab ini belum dipublikasikan. Pastikan semua field telah diisi."
         />
       )}
       <div className="p-6">
@@ -60,15 +60,15 @@ const ChapterIdPage = async ({
               className="flex items-center text-sm hover:opacity-75 transition mb-6"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Course
+              Kembali ke modul
             </Link>
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">
                   <h1 className="text-2xl font-medium">
-                      Chapter Creation
+                      Pembuatan Bab
                   </h1>
                   <span className="text-sm text-slate-700">
-                      Complete all fields {completionText}
+                      isi semua field {completionText}
                   </span>
               </div>
               <ChapterActions
@@ -86,7 +86,7 @@ const ChapterIdPage = async ({
                   <div className="flex items-center gap-x-2">
                       <IconBadge icon={LayoutDashboard}/>
                       <h2 className="text-xl">
-                          Chapter Details
+                          Detail Bab
                       </h2>
                   </div>
                   {/* TODO: ChaptertitleForm */}
@@ -105,7 +105,7 @@ const ChapterIdPage = async ({
                 <div className="flex items-center gap-x-2">
                   <IconBadge icon={Eye}/>
                   <h2 className="text-xl">
-                      Access Settings
+                      Pengaturan Akses
                   </h2>
                 </div>
                 <ChapterAccessForm
@@ -118,7 +118,7 @@ const ChapterIdPage = async ({
           <div>
             <div className="flex items-center gap-x-2">
               <IconBadge icon={Video} />
-              <h2 className="text-xl">Add a video</h2>
+              <h2 className="text-xl">Tambahkan video</h2>
             </div>
             <ChapterVideoForm
               initialData={chapter}
