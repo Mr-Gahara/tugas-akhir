@@ -26,7 +26,7 @@ const ChapterIdPage = async ({ params }: ChapterIdPageProps) => {
     chapter,
     course,
     muxData,
-    attachment = [],
+    attachments = [],
     nextChapter,
     userProgress,
     purchase,
@@ -86,32 +86,49 @@ const ChapterIdPage = async ({ params }: ChapterIdPageProps) => {
           <Separator />
           <div>
             <Preview value={chapter.description!} />
-            {!!attachment?.length && (
+            {!!attachments?.length && (
               <div>
-                <Separator />
+                <Separator/>
                 <div className="p-4">
-                  {attachment.map(
-                    (attachment: {
-                      id: string;
-                      url?: string;
-                      name?: string;
-                    }) => (
-                      <a
-                        href={attachment.url || "#"}
-                        key={attachment.id}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center p-3 w-full border text-sky-700 bg-sky-200 rounded-md hover:underline"
-                      >
-                        <File />
-                        <p className="line-clamp-1">
-                          {attachment.name || "Download Attachment"}
-                        </p>
-                      </a>
-                    )
-                  )}
+                  {attachments.map((attachment) => (
+                    <a href={attachment.url}
+                      target="_blank"
+                      key={attachment.id}
+                      className="flex items-center p-3 w-full bg-sky-200 border text-sky-700 rounded-md hover:underline"
+                    >
+                      <File/>
+                     <p className="line-clamp-1">
+                        {attachment.name}
+                      </p> 
+                    </a>
+                  ))}
                 </div>
               </div>
+              // <div>
+              //   <Separator />
+              //   <div className="p-4">
+              //     {attachment.map(
+              //       (attachment: {
+              //         id: string;
+              //         url?: string;
+              //         name?: string;
+              //       }) => (
+              //         <a
+              //           href={attachment.url || "#"}
+              //           key={attachment.id}
+              //           target="_blank"
+              //           rel="noopener noreferrer"
+              //           className="flex items-center p-3 w-full border text-sky-700 bg-sky-200 rounded-md hover:underline"
+              //         >
+              //           <File />
+              //           <p className="line-clamp-1">
+              //             {attachment.name || "Download Attachment"}
+              //           </p>
+              //         </a>
+              //       )
+              //     )}
+              //   </div>
+              // </div>
             )}
           </div>
         </div>
